@@ -10,7 +10,14 @@ class Itemlistpage extends StatefulWidget {
 
 class _ItemlistpageState extends State<Itemlistpage> {
 
-  List<String> items = ["1","2","3"];
+  List<String> items = [];
+
+  void _addItem() {
+    setState(() {
+      _itemList();
+      //items.add("New Item");
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,13 +34,20 @@ class _ItemlistpageState extends State<Itemlistpage> {
       body: items.isEmpty
       ? EmptyPage()
       : ListView.builder(
-        itemCount: items.length,
-        itemBuilder: (BuildContext context, int index) {
-          return ListTile(
-            title: Text(items[index]),
-          );
-        },
-      ),
+          itemCount: items.length,
+          itemBuilder: (BuildContext context, int index) {
+            return ListTile(
+              title: Text(items[index]),
+            );
+          },
+        ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _addItem,
+        child: const Icon(
+          Icons.add,
+          
+        ),
+      ), 
     ); 
   }
 }
@@ -53,10 +67,33 @@ class EmptyPage extends StatelessWidget {
     );
   }
 }
-/*
-class ListView.builder(
-  itemCount: itmes.length,
-  itemBuilder: (BuildContext context, int index) {
-    return ;
-  },
-), */
+
+class _itemList extends StatelessWidget {
+
+  //final NumberFormat numberFormat = NumberFormat("###");
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Container(
+          child: Text("image"),
+          alignment: Alignment.centerLeft,
+        ),
+        Column(
+          children: [
+            Text(
+              "items name",
+              textAlign: TextAlign.left,
+            ),
+            Text(
+              "price",
+              textAlign: TextAlign.right,
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+}
