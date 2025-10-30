@@ -20,7 +20,7 @@ class _ItemlistpageState extends State<Itemlistpage> {
   void _addItem() {
     setState(() {
       ItemAdd();
-     //ItemList();
+      //ItemList();
       //items.add();
     });
   }
@@ -71,15 +71,17 @@ class _ItemlistpageState extends State<Itemlistpage> {
             ),
       floatingActionButton: FloatingActionButton(
         onPressed: //_addItem,
-        
-                  () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ItemAdd()
-                      ),
-                    );
-                  },
+        () async {
+          Product result = await Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => ItemAdd()),
+          );
+
+          print('result, ${result.name}');
+
+          items.add(result);
+          setState(() {});
+        },
 
         child: const Icon(Icons.add),
       ),
@@ -107,19 +109,17 @@ class ItemList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: 
-        Row(
-          children: [
-            Container(child: Text("image"), alignment: Alignment.centerLeft),
-            Column(
-              children: [
-                Text("items name", textAlign: TextAlign.left),
-                Text("price", textAlign: TextAlign.right),
-              ],
-            ),
-          ],
-        ),
-      
+      body: Row(
+        children: [
+          Container(child: Text("image"), alignment: Alignment.centerLeft),
+          Column(
+            children: [
+              Text("items name", textAlign: TextAlign.left),
+              Text("price", textAlign: TextAlign.right),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
