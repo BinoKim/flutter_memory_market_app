@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_memory_market_app/itemListPage.dart';
+import 'package:flutter_memory_market_app/theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,16 +12,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "MEMORY MARKET",
+      themeMode: ThemeMode.light,
+      theme: lightTheme,
+      darkTheme: darkTheme,
       home: Itemlistpage(),
-      theme: ThemeData(
-        useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.amber),
-      ),
+      
     );
   }
 }
- 
 
-
- //
